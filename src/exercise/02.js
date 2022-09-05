@@ -12,10 +12,10 @@ function Greeting({initialName = ''}) {
     React.useEffect(() => {
       window.localStorage.setItem('name', name)
     }, [name])
-    return {name, setName}
+    return [name, setName]
   }
 
-  const {name, setName} = SyncLocalStorageEffect()
+  const [name, setName] = SyncLocalStorageEffect()
 
   function handleChange(event) {
     setName(event.target.value)
