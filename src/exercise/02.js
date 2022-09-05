@@ -4,9 +4,9 @@
 import * as React from 'react'
 
 function Greeting({initialName = ''}) {
-  function SyncLocalStorageEffect(key) {
+  function SyncLocalStorageEffect(key, defaultValue = '') {
     const [name, setName] = React.useState(
-      () => window.localStorage.getItem(key) ?? initialName,
+      () => window.localStorage.getItem(key) ?? defaultValue,
     )
 
     React.useEffect(() => {
@@ -15,7 +15,7 @@ function Greeting({initialName = ''}) {
     return [name, setName]
   }
 
-  const [name, setName] = SyncLocalStorageEffect('name')
+  const [name, setName] = SyncLocalStorageEffect('name', initialName)
 
   function handleChange(event) {
     setName(event.target.value)
