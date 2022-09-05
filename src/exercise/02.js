@@ -4,13 +4,18 @@
 import * as React from 'react'
 
 function Greeting({initialName = ''}) {
-  const [name, setName] = React.useState(
-    () => window.localStorage.getItem('name') ?? initialName,
-  )
+  function syncLocalStorageEffect() {
+    const [name, setName] = React.useState(
+      () => window.localStorage.getItem('name') ?? initialName,
+    )
 
-  React.useEffect(() => {
-    window.localStorage.setItem('name', name)
-  }, [name])
+    React.useEffect(() => {
+      window.localStorage.setItem('name', name)
+    }, [name])
+    return {name, setName}
+  }
+
+  const {name, setName} = syncLocalStorageEffect()
 
   function handleChange(event) {
     setName(event.target.value)
