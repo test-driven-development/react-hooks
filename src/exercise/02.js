@@ -11,7 +11,7 @@ function Greeting({initialName = ''}) {
 
     React.useEffect(() => {
       window.localStorage.setItem(key, state)
-    }, [state])
+    }, [key, state])
     return [state, setState]
   }
 
