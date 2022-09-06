@@ -10,7 +10,10 @@ function useLocalStorageEffect(
 ) {
   const [state, setState] = React.useState(() => {
     const valueInLocalStorage = window.localStorage.getItem(key)
-    return valueInLocalStorage ? deserialize(valueInLocalStorage) : defaultValue
+    if (valueInLocalStorage) {
+      return deserialize(valueInLocalStorage)
+    }
+    return defaultValue
   })
 
   React.useEffect(() => {
